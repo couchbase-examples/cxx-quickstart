@@ -1,0 +1,30 @@
+{
+    "airline": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+            "id": {
+                "type": "integer"
+            },
+            "type": {
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+            "iata": {
+                "type": "string"
+            },
+            "icao": {
+                "type": "string"
+            },
+            "callsign": {
+                "type": "string"
+            },
+            "country": {
+                "type": "string"
+            }
+        },
+        "title": "airline"
+    }
+}
