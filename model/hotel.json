@@ -1,0 +1,214 @@
+{
+    "Hotel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "title": {
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+            "address": {
+                "type": "string"
+            },
+            "directions": {
+                "type": "null"
+            },
+            "phone": {
+                "type": "string"
+            },
+            "tollfree": {
+                "type": "null"
+            },
+            "email": {
+                "type": "null"
+            },
+            "fax": {
+                "type": "null"
+            },
+            "url": {
+                "type": "string",
+                "format": "uri",
+                "qt-uri-protocols": [
+                    "http"
+                ]
+            },
+            "checkin": {
+                "type": "null"
+            },
+            "checkout": {
+                "type": "null"
+            },
+            "price": {
+                "type": "null"
+            },
+            "geo": {
+                "$ref": "#/definitions/Geo"
+            },
+            "type": {
+                "type": "string"
+            },
+            "id": {
+                "type": "integer"
+            },
+            "country": {
+                "type": "string"
+            },
+            "city": {
+                "type": "string"
+            },
+            "state": {
+                "type": "null"
+            },
+            "reviews": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/Review"
+                }
+            },
+            "public_likes": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "vacancy": {
+                "type": "boolean"
+            },
+            "description": {
+                "type": "string"
+            },
+            "alias": {
+                "type": "null"
+            },
+            "pets_ok": {
+                "type": "boolean"
+            },
+            "free_breakfast": {
+                "type": "boolean"
+            },
+            "free_internet": {
+                "type": "boolean"
+            },
+            "free_parking": {
+                "type": "boolean"
+            }
+        },
+        "required": [
+            "address",
+            "alias",
+            "checkin",
+            "checkout",
+            "city",
+            "country",
+            "description",
+            "directions",
+            "email",
+            "fax",
+            "free_breakfast",
+            "free_internet",
+            "free_parking",
+            "geo",
+            "id",
+            "name",
+            "pets_ok",
+            "phone",
+            "price",
+            "public_likes",
+            "reviews",
+            "state",
+            "title",
+            "tollfree",
+            "type",
+            "url",
+            "vacancy"
+        ],
+        "title": "Hotel"
+    },
+    "Geo": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "lat": {
+                "type": "number"
+            },
+            "lon": {
+                "type": "number"
+            },
+            "accuracy": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "accuracy",
+            "lat",
+            "lon"
+        ],
+        "title": "Geo"
+    },
+    "Review": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "content": {
+                "type": "string"
+            },
+            "ratings": {
+                "$ref": "#/definitions/Ratings"
+            },
+            "author": {
+                "type": "string"
+            },
+            "date": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "author",
+            "content",
+            "date",
+            "ratings"
+        ],
+        "title": "Review"
+    },
+    "Ratings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "Service": {
+                "type": "integer"
+            },
+            "Cleanliness": {
+                "type": "integer"
+            },
+            "Overall": {
+                "type": "integer"
+            },
+            "Value": {
+                "type": "integer"
+            },
+            "Location": {
+                "type": "integer"
+            },
+            "Rooms": {
+                "type": "integer"
+            },
+            "Business service (e.g., internet access)": {
+                "type": "integer"
+            },
+            "Check in / front desk": {
+                "type": "integer"
+            }
+        },
+        "required": [
+            "Cleanliness",
+            "Location",
+            "Overall",
+            "Rooms",
+            "Service",
+            "Value"
+        ],
+        "title": "Ratings"
+    }
+}
