@@ -8,7 +8,7 @@
 2. How to write simple parametrized [SQL++ queries](https://docs.couchbase.com/python-sdk/current/howtos/n1ql-queries-with-sdk.html) using the built-in travel-sample bucket.
 3. How to create and use [Search indexes](https://docs.couchbase.com/server/current/search/search.html#indexes) for near real-time search capabilities for a diverse range of data types.
 
-Full documentation for the tutorial can be found on the [Couchbase Developer Portal](https://developer.couchbase.com/tutorial-quickstart-fastapi-python/).
+Full documentation for the tutorial can be found on the [Couchbase Developer Portal]().
 
 
 ## Prerequisites
@@ -29,7 +29,7 @@ We will walk through the different steps required to get the application running
 
 ### Cloning Repo
 
-```shell
+```sh
 git clone https://github.com/couchbase-examples/cxx-quickstart.git
 ```
 
