@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "cxx_client.h"
+#include "db.h"
 
 class CxxQuickStartTest : public testing::Test{
     protected:
