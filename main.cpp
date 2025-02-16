@@ -1,4 +1,5 @@
-#include "cxx_client.h"
+#include "db.h"
+#include "operations.h"
 
 int main(){
     //Important to get all the vars since if it goes out of scope, it won't work.
@@ -24,7 +25,7 @@ int main(){
     
     // Upserting a document from string
     std::cout << "Upserting a doc:\t" << "quickstart_test" << std::endl;
-    auto upsert_res = UpsertFromString(col, "quickstart_test", "{ \"test\": \"hello\"}");
+    auto upsert_res = Upsert(col, "quickstart_test", "{ \"test\": \"hello\"}", false);
     std::cout << std::endl;
     
     // Creates a search index from the given JSON file

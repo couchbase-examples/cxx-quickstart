@@ -4,7 +4,6 @@ project(CxxQuickStart CXX)
 find_package(fmt REQUIRED)
 include(cmake/CPM.cmake)
 
-
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 configure_file(hotel_search_index.json hotel_search_index.json)
@@ -38,7 +37,7 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_library(cxx_quickstart_lib cxx_client.cpp)
+add_library(cxx_quickstart_lib db.cpp operations.cpp)
 target_link_libraries(cxx_quickstart_lib couchbase_cxx_client::couchbase_cxx_client taocpp::json)
 target_include_directories(cxx_quickstart_lib PUBLIC
                           "${PROJECT_BINARY_DIR}"
@@ -46,9 +45,9 @@ target_include_directories(cxx_quickstart_lib PUBLIC
                           )
 
 
-add_executable(cxx_quickstart_ex main.cpp)
-target_link_libraries(cxx_quickstart_ex cxx_quickstart_lib)
-target_include_directories(cxx_quickstart_ex PUBLIC
+add_executable(cxx_quickstart main.cpp)
+target_link_libraries(cxx_quickstart cxx_quickstart_lib)
+target_include_directories(cxx_quickstart PUBLIC
                           "${PROJECT_BINARY_DIR}"
                           "${PROJECT_SOURCE_DIR}/include"
                           )

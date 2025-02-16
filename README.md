@@ -90,7 +90,7 @@ This will download and install all the dependencies required for the project to 
 At this point, we have installed the dependencies, loaded the travel-sample data and configured the application with the credentials. The application is now ready and you can run it by executing the following command from the build directory:
 
 ```sh
-./cxx_quickstart_ex
+./cxx_quickstart
 ```
 
 

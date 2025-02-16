@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "db.h"
+#include "operations.h"
 
 class CxxQuickStartTest : public testing::Test{
     protected:
@@ -36,7 +37,9 @@ class CxxQuickStartTest : public testing::Test{
                 auto err = scope_index_manager.upsert_index(i).get();
 
                 // Blocked waiting till index ingests docs
-                while(scope_index_manager.get_indexed_documents_count(INDEX_NAME).get().second < DOCS_TARGET);
+                while(scope_index_manager.get_indexed_documents_count(INDEX_NAME).get().second < DOCS_TARGET){
+                    sleep(2);
+                }
             }
         }
 
@@ -141,7 +144,7 @@ TEST_F(CxxQuickStartTest, CheckUpsertFromString){
     std::string test_val{ "{\"test_val\": \"cxx_quickstart_test\"}" };
     tao::json::value v = tao::json::from_string(test_val); //For checking get result
     std::string doc_id{"cxx_test_1"};
-    auto upsert_res = UpsertFromString(col, doc_id, test_val);
+    auto upsert_res = Upsert(col, doc_id, test_val, false);
     EXPECT_TRUE(upsert_res);
     
     auto [ex_err, ex_res] = col.exists(doc_id).get();
@@ -163,7 +166,7 @@ TEST_F(CxxQuickStartTest, CheckUpsertFromFile){
                                                         COL_NAME);
 
     std::string doc_id{"cxx_test_1"};
-    auto upsert_res = UpsertFromFile(col, doc_id, "test_doc.json");
+    auto upsert_res = Upsert(col, doc_id, "test_doc.json", true);
     EXPECT_TRUE(upsert_res);
     
     auto v = tao::json::from_file("test_doc.json");
@@ -189,7 +192,7 @@ TEST_F(CxxQuickStartTest, CheckInsertFromString){
     std::string test_val{ "{\"test_val\": \"cxx_quickstart_test\"}" };
     tao::json::value v = tao::json::from_string(test_val); //For checking get result
     std::string doc_id{"cxx_test_1"};
-    auto upsert_res = InsertFromString(col, doc_id, test_val);
+    auto upsert_res = Insert(col, doc_id, test_val, false);
     EXPECT_TRUE(upsert_res);
     
     auto [ex_err, ex_res] = col.exists(doc_id).get();
@@ -211,7 +214,7 @@ TEST_F(CxxQuickStartTest, CheckInsertFromFile){
                                                         COL_NAME);
 
     std::string doc_id{"cxx_test_1"};
-    auto upsert_res = InsertFromFile(col, doc_id, "test_doc.json");
+    auto upsert_res = Insert(col, doc_id, "test_doc.json", true);
     EXPECT_TRUE(upsert_res);
     
     auto v = tao::json::from_file("test_doc.json");
