@@ -1,27 +1,35 @@
 # Quickstart in Couchbase with C++
 
 #### Overview
+This repository provides a simple guide to get started with integrating Couchbase with a C++ application. It is designed to give you a starter project in order to give you an idea about how to start working with the Couchbase [C++ SDK](https://github.com/couchbase/couchbase-cxx-client). 
 
- Interacting with databases in C++ can become quite a difficult task and creating a REST API for interacting with the database might not be greatly useful for C++ developers. The best way to perform CRUD operations in C++ is to make dedicated procedures for this purpose. This repo is designed to give you a starter project (in C++) in order to give you an idea about how to start working with the Couchbase [C++ SDK](https://github.com/couchbase/couchbase-cxx-client).
-
+<details>
+<summary>More Info</summary>
+Following topics are 
 1. How to create, read, update, and delete documents using [Key Value operations](https://docs.couchbase.com/python-sdk/current/howtos/kv-operations.html) (KV operations). KV operations are unique to couchbase and provide super fast (think microseconds) queries.
+
 2. How to write simple parametrized [SQL++ queries](https://docs.couchbase.com/python-sdk/current/howtos/n1ql-queries-with-sdk.html) using the built-in travel-sample bucket.
+
 3. How to create and use [Search indexes](https://docs.couchbase.com/server/current/search/search.html#indexes) for near real-time search capabilities for a diverse range of data types.
 
 Full documentation for the tutorial can be found on the [Couchbase Developer Portal]().
+</details>
+
 
 
 ## Prerequisites
 
 To run this prebuilt project, you will need:
 
-- [Couchbase Capella](https://www.couchbase.com/products/capella/) cluster with [travel-sample](https://docs.couchbase.com/python-sdk/current/ref/travel-app-data-model.html) bucket loaded.
+- [Couchbase Capella](https://www.couchbase.com/products/capella/) cluster or a self managed Couchbase cluster with [travel-sample](https://docs.couchbase.com/python-sdk/current/ref/travel-app-data-model.html) bucket loaded.
   - To run this tutorial using a self managed Couchbase cluster, please refer to this [section](##Running-Self-Managed-Couchbase-Cluster).
+
 - [CMake](https://cmake.org/) 3.9 or higher installed
 - [C++17](https://en.cppreference.com/w/cpp/17) and a compatible compiler, [clang++](https://clang.llvm.org/) or [g++](https://gcc.gnu.org/)
 - Loading Travel Sample Bucket
-  If travel-sample is not loaded in your Capella cluster, you can load it by following the instructions for your Capella Cluster:
+  If travel-sample is not loaded in your cluster, you can load it by following the instructions:
   - [Load travel-sample bucket in Couchbase Capella](https://docs.couchbase.com/cloud/clusters/data-service/import-data-documents.html#import-sample-data)
+  - [Load travel-sample bucket in self-managed cluster](https://docs.couchbase.com/server/current/getting-started/do-a-quick-install.html#load-the-sample-dataset)
 
 ## Application Setup
 
