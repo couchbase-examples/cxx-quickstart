@@ -1,5 +1,13 @@
 #pragma once
-#include "db.h"
+#include <couchbase/cluster.hxx>
+#include <couchbase/codec/tao_json_serializer.hxx>
+#include <couchbase/match_query.hxx>
+#include <couchbase/term_query.hxx>
+#include <couchbase/conjunction_query.hxx>
+#include <couchbase/boolean_field_query.hxx>
+#include <tao/json.hpp>
+#include <tao/json/contrib/traits.hpp>
+#include <iostream>
 
 //Create and Update
 int Upsert(couchbase::collection& col, const std::string& doc_id, const std::string& file_path, bool file_flag = false);

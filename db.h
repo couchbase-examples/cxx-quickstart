@@ -1,12 +1,5 @@
 #pragma once
 #include <couchbase/cluster.hxx>
-#include <couchbase/codec/tao_json_serializer.hxx>
-#include <couchbase/match_query.hxx>
-#include <couchbase/term_query.hxx>
-#include <couchbase/conjunction_query.hxx>
-#include <couchbase/boolean_field_query.hxx>
-#include <tao/json.hpp>
-#include <tao/json/contrib/traits.hpp>
 #include <iostream>
 
 std::vector<std::string> parseEnvironmentVariables(const std::vector<std::string>& keys);
