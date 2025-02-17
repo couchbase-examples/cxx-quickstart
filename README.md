@@ -12,7 +12,7 @@ Following topics are
 
 3. How to create and use [Search indexes](https://docs.couchbase.com/server/current/search/search.html#indexes) for near real-time search capabilities for a diverse range of data types.
 
-Full documentation for the tutorial can be found on the [Couchbase Developer Portal]().
+Full documentation for the tutorial can be found on the [Couchbase Developer Portal](https://developer.couchbase.com/tutorial-cxx-quickstart).
 </details>
 
 

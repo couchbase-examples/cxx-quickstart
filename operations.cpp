@@ -67,13 +67,6 @@ couchbase::query_result Query(couchbase::scope& scope, std::string& query, const
 
 }
 
-bool searchIndexExists(couchbase::scope_search_index_manager& sc_manager, const std::string& index_name){
-    auto [all_err, all_ind] = sc_manager.get_all_indexes().get();
-    for(auto x:all_ind){
-        if(x.name == index_name) return true;
-    }
-    return false;
-}
 
 std::string CreateSearchIndex(couchbase::scope& scope, const std::string& index_file){
     auto scope_index_manager = scope.search_indexes();
