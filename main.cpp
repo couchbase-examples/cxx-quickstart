@@ -5,16 +5,7 @@ int main(){
     //Important to get all the vars since if it goes out of scope, it won't work.
     auto [cluster, bucket, scope, col] = InitCluster();
 
-    std::string query{ R"(        
-        SELECT META(h).id, h AS doc,
-               AVG(r.ratings.Overall) AS avg_rating
-        FROM hotel h
-        UNNEST h.reviews r
-        WHERE h.country IN $1 AND h.description LIKE "%cheap%"
-        GROUP BY META(h).id, h
-        ORDER BY avg_rating DESC
-        LIMIT 5;
-    )" };
+    
     
     
     // Reading a document
@@ -41,10 +32,9 @@ int main(){
     
     //Executing a query with positional Parameters
     std::cout << "Executing a Query with positional parameters" << std::endl;
-    auto query_res = Query(scope, query, couchbase::query_options{}.positional_parameters(std::vector<std::string>{"United States", "United Kingdom"}));
-    for (auto& row : query_res.rows_as()) {
-        std::cout  << row["id"].as<std::string>() << " " << row["doc"]["country"].as<std::string>() << std::endl;
-        std::cout << row["avg_rating"].as<double>() << " " << row["doc"]["title"].as<std::string>() <<  std::endl;
+    std::vector<std::string> query_res = Query(scope);
+    for (auto& row : query_res) {
+        std::cout << row << std::endl;
     }
     std::cout << std::endl;
     

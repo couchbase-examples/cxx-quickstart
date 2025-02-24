@@ -56,16 +56,29 @@ int Delete(couchbase::collection& col, const std::string& doc_id){
     return 1;
 }
 
-couchbase::query_result Query(couchbase::scope& scope, std::string& query, const couchbase::query_options& opts){
-    auto [q_err, q_res] = scope.query(query, opts).get();
+std::vector<std::string> Query(couchbase::scope& scope){
+    std::string query{ R"(        
+        SELECT META(h).id, h AS doc,
+               AVG(r.ratings.Overall) AS avg_rating
+        FROM hotel h
+        UNNEST h.reviews r
+        WHERE h.country IN $1 AND h.description LIKE "%cheap%"
+        GROUP BY META(h).id, h
+        ORDER BY avg_rating DESC
+        LIMIT 5;
+    )" };
+    
+    auto [q_err, q_res] = scope.query(query, couchbase::query_options{}.positional_parameters(std::vector<std::string>{"United States", "United Kingdom"})).get();
     if(q_err.ec()){
         std::cout << "Error executing query: " << q_err.message() << std::endl;
-        return couchbase::query_result{};
+        return std::vector<std::string>();
     }
-    
-
-    return q_res; 
-
+    std::vector<std::string> res;
+    auto v = q_res.rows_as<couchbase::codec::tao_json_serializer>();
+    for(auto x:v){
+        res.push_back(x["id"].as<std::string>() + " " + x["doc"]["country"].as<std::string>() + "\n" + std::to_string(x["avg_rating"].as<double>()) + " " + x["doc"]["title"].as<std::string>());
+    }
+    return res;
 }
 
 bool searchIndexExists(couchbase::scope_search_index_manager& sc_manager, const std::string& index_name){

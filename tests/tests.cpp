@@ -262,24 +262,11 @@ TEST_F(CxxQuickStartTest, CheckQuery){
                                                         SCOPE_NAME, 
                                                         COL_NAME);
 
-    std::string expected_json{R"({
-        "airline": {
-            "id": 18241,
-            "type": "airline",
-            "name": "Royal Airways",
-            "iata": "KG",
-            "icao": "RAW",
-            "callsign": "RAW",
-            "country": "United States"
-        }
-    })"};
+    std::string expected_val("hotel_26169 United States\n4.750000 San Francisco/Twin Peaks-Lake Merced");
 
-    auto v = tao::json::from_string(expected_json);
-    std::string query = {"SELECT * FROM `travel-sample`.inventory.airline WHERE name='Royal Airways' LIMIT 10"};
-    auto q_res = Query(scope, query);
-    auto rows = q_res.rows_as<couchbase::codec::tao_json_serializer>();
-    EXPECT_EQ(rows.size(), 1);
-    EXPECT_EQ(rows[0], v);
+    auto q_res = Query(scope);
+    EXPECT_EQ(q_res.size(), 5);
+    EXPECT_EQ(q_res[0], expected_val);
 
 }
 

@@ -20,7 +20,7 @@ tao::json::value Read(couchbase::collection& col, const std::string& doc_id);
 int Delete(couchbase::collection& col, const std::string& doc_id);
 
 // Query
-couchbase::query_result Query(couchbase::scope& scope, std::string& query, const couchbase::query_options& opts = couchbase::query_options{});
+std::vector<std::string> Query(couchbase::scope& scope);
 
 // Search Index
 bool searchIndexExists(couchbase::scope_search_index_manager& sc_manager, const std::string& index_name);
