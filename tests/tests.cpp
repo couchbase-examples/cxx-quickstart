@@ -280,7 +280,6 @@ TEST_F(CxxQuickStartTest, CheckQuery){
     auto rows = q_res.rows_as<couchbase::codec::tao_json_serializer>();
     EXPECT_EQ(rows.size(), 1);
     EXPECT_EQ(rows[0], v);
-    
 
 }
 

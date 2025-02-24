@@ -18,13 +18,13 @@ int main(){
     
     
     // Reading a document
-    std::cout << "Reading a doc:" << std::endl;
+    std::cout << "Reading doc id:\t" << "airline_10123" << std::endl;
     auto v = Read(col, "airline_10123");
     std::cout << tao::json::to_string(v) << std::endl;
     std::cout << std::endl;
     
     // Upserting a document from string
-    std::cout << "Upserting a doc:\t" << "quickstart_test" << std::endl;
+    std::cout << "Upserting doc id:\t" << "quickstart_test" << std::endl;
     auto upsert_res = Upsert(col, "quickstart_test", "{ \"test\": \"hello\"}", false);
     std::cout << std::endl;
     
@@ -47,7 +47,7 @@ int main(){
         std::cout << row["avg_rating"].as<double>() << " " << row["doc"]["title"].as<std::string>() <<  std::endl;
     }
     std::cout << std::endl;
-
+    
     //Filter
     std::cout << "Filter with conjunction of MatchQuery and TermQuery" << std::endl;
     auto filter_res = Filter(scope, index_name, 50, 1);

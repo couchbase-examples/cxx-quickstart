@@ -53,13 +53,6 @@ bool checkSearchEnabled(couchbase::cluster& cluster, int min_nodes = 1){
     }
 }
 
-bool searchIndexExists(couchbase::scope_search_index_manager& sc_manager, const std::string& index_name){
-    auto [all_err, all_ind] = sc_manager.get_all_indexes().get();
-    for(auto x:all_ind){
-        if(x.name == index_name) return true;
-    }
-    return false;
-}
 
 std::tuple<couchbase::cluster, couchbase::bucket, couchbase::scope, couchbase::collection> connectCluster(const std::string& DB_CONN_STRING,
     const std::string& DB_USERNAME,

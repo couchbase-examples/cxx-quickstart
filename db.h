@@ -5,7 +5,7 @@
 std::vector<std::string> parseEnvironmentVariables(const std::vector<std::string>& keys);
 bool checkScopeAndColExists(couchbase::bucket& bucket, const std::string& scope_name, const std::string& col_name);
 bool checkSearchEnabled(couchbase::cluster& cluster, int min_nodes);
-bool searchIndexExists(couchbase::scope_search_index_manager& sc_manager, const std::string& index_name);
+
 std::tuple<couchbase::cluster, couchbase::bucket, couchbase::scope, couchbase::collection> connectCluster(const std::string& DB_CONN_STRING,
     const std::string& DB_USERNAME,
     const std::string& DB_PASSWD,

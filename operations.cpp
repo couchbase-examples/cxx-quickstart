@@ -62,9 +62,18 @@ couchbase::query_result Query(couchbase::scope& scope, std::string& query, const
         std::cout << "Error executing query: " << q_err.message() << std::endl;
         return couchbase::query_result{};
     }
+    
 
     return q_res; 
 
+}
+
+bool searchIndexExists(couchbase::scope_search_index_manager& sc_manager, const std::string& index_name){
+    auto [all_err, all_ind] = sc_manager.get_all_indexes().get();
+    for(auto x:all_ind){
+        if(x.name == index_name) return true;
+    }
+    return false;
 }
 
 
