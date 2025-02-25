@@ -151,7 +151,9 @@ std::vector<std::string> Filter(couchbase::scope& scope, const std::string& inde
     std::vector<std::string> rows_res{};
     // Reference is important since the copy constructor is deleted
     for(auto &row:res.rows()){
-        rows_res.push_back(row.id());
+        auto fields = row.fields_as<couchbase::codec::tao_json_serializer>();
+
+        rows_res.push_back(fields["name"].as<std::string>());
     }
     return rows_res;
     
