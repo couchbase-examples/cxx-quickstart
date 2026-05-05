@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
 
 project(CxxQuickStart CXX)
-find_package(fmt REQUIRED)
 include(cmake/CPM.cmake)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -16,9 +15,9 @@ CPMAddPackage(
   NAME
   couchbase_cxx_client
   GIT_TAG
-  1.0.5
+  1.3.1
   VERSION
-  1.0.5
+  1.3.1
   GITHUB_REPOSITORY
   "couchbase/couchbase-cxx-client"
   OPTIONS
