@@ -23,7 +23,7 @@ To run this prebuilt project, you will need:
 
 - [Couchbase Capella](https://www.couchbase.com/products/capella/) cluster or a self managed Couchbase cluster with [travel-sample](https://docs.couchbase.com/python-sdk/current/ref/travel-app-data-model.html) bucket loaded.
 
-- [CMake](https://cmake.org/) 3.9 or higher installed
+- [CMake](https://cmake.org/) 3.19 or higher installed
 - [C++17](https://en.cppreference.com/w/cpp/17) and a compatible compiler, [clang++](https://clang.llvm.org/) or [g++](https://gcc.gnu.org/)
 - Loading Travel Sample Bucket
   If travel-sample is not loaded in your cluster, you can load it by following the instructions:
@@ -50,7 +50,7 @@ Specifically, you need to do the following:
 - Create the [database credentials](https://docs.couchbase.com/cloud/clusters/manage-database-users.html) to access the travel-sample bucket (Read and Write) used in the application.
 - [Allow access](https://docs.couchbase.com/cloud/clusters/allow-ip-address.html) to the Cluster from the IP on which the application is running.
 
-All configuration for communication with the database is read from the environment variables. We have provided a convenience feature in this quickstart to setup the required environment variables using a shell script `setup_env_vars.sh`. Change the values of the following lines:
+All configuration for communication with the database is read from the environment variables. We have provided a convenience feature in this quickstart to set the required environment variables using the shell script `set_env_vars.sh`. Change the values of the following lines:
 
 ```sh
 export DB_CONN_STR=<connection_string>
@@ -64,7 +64,7 @@ export COL_NAME=<collection_name>
 
 Run the command:
 ```sh
-source setup_env_vars.sh
+source set_env_vars.sh
 ```
 This will set the environment variables for that session.
 
@@ -101,7 +101,7 @@ Once you run the executable, your terminal should fill up with the results of th
 
 ### Running Tests
 
-For running tests, a self-managed cluster is required with travel-sample bucket loaded or you need to update the connection details in the `tests/test.cpp` file. To run the tests, use the following command from the build directory:
+For running tests, a self-managed cluster is required with travel-sample bucket loaded or you need to update the connection details in the `tests/tests.cpp` file. To run the tests, use the following command from the build directory:
 
 ```sh
 ./tests/u_tests
