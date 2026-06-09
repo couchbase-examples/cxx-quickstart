@@ -18,4 +18,4 @@ target_include_directories(u_tests PUBLIC
 
 
 include(GoogleTest)
-gtest_discover_tests(u_tests)
+gtest_discover_tests(u_tests WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
