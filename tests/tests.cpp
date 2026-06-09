@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include <chrono>
+#include <thread>
 #include "db.h"
 #include "operations.h"
 
@@ -37,7 +39,7 @@ class CxxQuickStartTest : public testing::Test {
         if (all_err.ec()) {
             return false;
         }
-        for (auto x : all_ind) {
+        for (const auto& x : all_ind) {
             if (x.name == INDEX_NAME) {
                 return true;
             }
@@ -61,7 +63,7 @@ class CxxQuickStartTest : public testing::Test {
             if (!count_err.ec() && count >= DOCS_TARGET) {
                 return true;
             }
-            sleep(2);
+            std::this_thread::sleep_for(std::chrono::seconds(2));
         }
         return false;
     }
@@ -81,9 +83,10 @@ TEST(CxxQuickStartConfigTest, CheckParseEnvironmentVariables)
     setenv("TEST_VAR1", "Hello", 1);
     setenv("TEST_VAR2", "Hello2", 1);
     setenv("TEST_VAR1", "Hello3", 0);
-    std::vector<std::string> expected{ "Hello", "Hello2" };
-    auto res = parseEnvironmentVariables({ "TEST_VAR1", "TEST_VAR2" });
-    EXPECT_EQ(res.size(), 2);
+    unsetenv("NON_EXISTENT_VAR_XYZ");
+    std::vector<std::string> expected{ "Hello", "Hello2", "" };
+    auto res = parseEnvironmentVariables({ "TEST_VAR1", "TEST_VAR2", "NON_EXISTENT_VAR_XYZ" });
+    EXPECT_EQ(res.size(), 3);
     for (int i = 0; i < res.size(); i++) {
         EXPECT_EQ(res[i], expected[i]);
     }
@@ -263,12 +266,11 @@ TEST_F(CxxQuickStartTest, CheckSearchIndexExists)
 TEST_F(CxxQuickStartTest, CheckCreateSearchIndex)
 {
     auto [cluster, bucket, scope, col] = connect();
-    ASSERT_TRUE(ensureSearchIndex(scope));
     auto scope_index_manager = scope.search_indexes();
 
     auto [all_err, all_ind] = scope_index_manager.get_all_indexes().get();
     bool found = false;
-    for (auto x : all_ind) {
+    for (const auto& x : all_ind) {
         if (x.name == "hotel_search_test2") found = true;
     }
     EXPECT_FALSE(found);
@@ -276,7 +278,7 @@ TEST_F(CxxQuickStartTest, CheckCreateSearchIndex)
     CreateSearchIndex(scope, "test_index2.json");
     found = false;
     auto [all_err1, all_ind1] = scope_index_manager.get_all_indexes().get();
-    for (auto x : all_ind1) {
+    for (const auto& x : all_ind1) {
         if (x.name == "hotel_search_test2") found = true;
     }
     EXPECT_TRUE(found);
@@ -285,7 +287,7 @@ TEST_F(CxxQuickStartTest, CheckCreateSearchIndex)
     EXPECT_FALSE(err.ec());
     auto [all_err2, all_ind2] = scope_index_manager.get_all_indexes().get();
     found = false;
-    for (auto x : all_ind2) {
+    for (const auto& x : all_ind2) {
         if (x.name == "hotel_search_test2") found = true;
     }
     EXPECT_FALSE(found);
