@@ -7,6 +7,7 @@
 #include <couchbase/boolean_field_query.hxx>
 #include <tao/json.hpp>
 #include <tao/json/contrib/traits.hpp>
+#include "search_index_definition.h"
 #include <iostream>
 
 //Create and Update
