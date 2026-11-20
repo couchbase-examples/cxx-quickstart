@@ -107,6 +107,12 @@ For running tests, a self-managed cluster is required with travel-sample bucket 
 ./tests/u_tests
 ```
 
+The Search index definition tests do not need a cluster. They read the index JSON files, so run them from the `tests` build directory:
+
+```sh
+cd tests && ./search_index_definition_tests
+```
+
 ### Data Model
 
 For this quickstart, we use one collection, `airline`  and `hotels` collection that contains sample airline and sample hotel information. For CRUD operations, we make use of the `airline` collection, whereas for Search indexes and Query execution we use the `hotel`collection.
