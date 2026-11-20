@@ -36,8 +36,12 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
+add_library(search_index_definition search_index_definition.cpp)
+target_link_libraries(search_index_definition PUBLIC couchbase_cxx_client::couchbase_cxx_client taocpp::json)
+target_include_directories(search_index_definition PUBLIC "${PROJECT_SOURCE_DIR}")
+
 add_library(cxx_quickstart_lib db.cpp operations.cpp)
-target_link_libraries(cxx_quickstart_lib couchbase_cxx_client::couchbase_cxx_client taocpp::json)
+target_link_libraries(cxx_quickstart_lib search_index_definition couchbase_cxx_client::couchbase_cxx_client taocpp::json)
 target_include_directories(cxx_quickstart_lib PUBLIC
                           "${PROJECT_BINARY_DIR}"
                           "${PROJECT_SOURCE_DIR}/include"

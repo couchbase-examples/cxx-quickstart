@@ -92,20 +92,12 @@ bool searchIndexExists(couchbase::scope_search_index_manager& sc_manager, const 
 
 std::string CreateSearchIndex(couchbase::scope& scope, const std::string& index_file){
     auto scope_index_manager = scope.search_indexes();
-    tao::json::value v = tao::json::from_file(index_file);
+    auto i = loadSearchIndexDefinition(index_file);
 
-    if(searchIndexExists(scope_index_manager, v["name"].get_string())){
+    if(searchIndexExists(scope_index_manager, i.name)){
         std::cout << "Index with same name already exists." << std::endl;
-        return v["name"].get_string();
+        return i.name;
     }
-
-    // Need to build up members manually
-    couchbase::management::search::index i;
-    i.name = v["name"].get_string();
-    i.params_json = tao::json::to_string(v["params"]);
-    i.plan_params_json = tao::json::to_string(v["planParams"]);
-    i.source_name = v["sourceName"].get_string();
-    i.source_type = v["sourceType"].get_string();
 
     auto err = scope_index_manager.upsert_index(i).get();
     if(err.ec()){
