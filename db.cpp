@@ -7,9 +7,6 @@ std::vector<std::string> parseEnvironmentVariables(const std::vector<std::string
         if(std::getenv(x.c_str())){
             res[i] = std::getenv(x.c_str());
         }
-        else{
-            res.push_back(""); 
-        }
 
     }
     return res;
@@ -108,4 +105,3 @@ std::tuple<couchbase::cluster, couchbase::bucket, couchbase::scope, couchbase::c
     );
     
 }
-

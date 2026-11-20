@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.19)
 
 project(CxxQuickStart CXX)
 include(cmake/CPM.cmake)
+enable_testing()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -15,9 +16,9 @@ CPMAddPackage(
   NAME
   couchbase_cxx_client
   GIT_TAG
-  1.3.1
+  1.3.2
   VERSION
-  1.3.1
+  1.3.2
   GITHUB_REPOSITORY
   "couchbase/couchbase-cxx-client"
   OPTIONS
